@@ -13,7 +13,7 @@ class Matrix:
 
     def show(self):
         for row in self.matrix:
-            print(f"{row}")
+            print(row)
 
     def transpose(self):
         place_holder_matrix = []
@@ -78,7 +78,7 @@ class Matrix:
             return calculate_determinant(self.matrix)
         
     def reduced_row_echelon_form(self):
-        self.matrix = reduced_row_echelon_form(self.matrix)
+        self.matrix = reduced_row_echelon_form_helper(self.matrix)
         return self
     
     def inverse_matrix_via_rref(self):
@@ -122,7 +122,7 @@ def calculate_determinant(matrix):
     return determinant
 
 # ensures we don't need to make many Matrix objects
-def reduced_row_echelon_form(matrix):
+def reduced_row_echelon_form_helper(matrix):
     row_index = 0
 
     for column_index in range(len(matrix[0])): # looping through columns
@@ -182,7 +182,7 @@ def inverse_matrix_via_rref(matrix):
                 matrix[row_index].append(0)
 
     # rref
-    rref_matrix = reduced_row_echelon_form(matrix)
+    rref_matrix = reduced_row_echelon_form_helper(matrix)
 
     # cut off left half (identity matrix)
     for row_index in range(len(rref_matrix)):
